@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ofek - Tailored Manufacturing Solutions</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        margin: 0;
+        color: #333;
+        background-color: #fff;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      main .container,
+      footer .container {
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.7)
+          ),
+          url("asset/image/banner.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding-bottom: 60px;
+      }
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px 0;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      nav ul li {
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: 18px;
+      }
+      nav a {
+        color: #2b4242;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 8px;
+      }
+      nav a:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2px;
+        background-color: #2b4242;
+      }
+      .banner-content {
+        text-align: left;
+        padding: 80px 0;
+        color: #2b4242;
+      }
+      .banner-content .logo {
+        width: 250px;
+        margin-bottom: -20px;
+        margin-left: -30px;
+      }
+      .banner-content h1 {
+        font-size: 28px;
+        font-weight: normal;
+        max-width: 900px;
+        margin: 0 0 30px;
+      }
+      .btn {
+        background-color: #374b57;
+        color: white;
+        padding: 15px 60px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 42px;
+        margin-bottom: 40px;
+        font-weight: 300;
+        position: relative;
+        padding-bottom: 15px;
+        align-self: flex-end;
+        width: -moz-fit-content;
+        width: fit-content;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 2px;
+        background-color: #333;
+      }
+
+      #nutshell p {
+        line-height: 1.6;
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+
+      #solutions {
+        background-color: #6a8a9a;
+        color: white;
+      }
+
+      #solutions .section-title::after {
+        background-color: white;
+      }
+
+      .solution-box {
+        background-color: transparent;
+        color: white;
+        padding: 30px;
+        margin-bottom: 30px;
+        border: 1px solid white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .solution-box .icon {
+        margin-right: 30px;
+        min-width: 100px;
+        text-align: center;
+      }
+
+      .solution-box .icon img {
+        max-width: 100px;
+      }
+
+      .solution-box h3 {
+        background-color: #374b57;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        display: inline-block;
+        font-size: 28px;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .solution-box p {
+        font-size: 20px;
+        margin: 10px;
+      }
+
+      #partners {
+        text-align: center;
+      }
+
+      .partners-logos {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .partners-logos img {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 200px;
+      }
+
+      footer {
+        background-color: #6a8a9a;
+        color: white;
+        text-align: right;
+        padding: 60px 0;
+      }
+
+      footer .section-title {
+        color: white;
+      }
+
+      footer .section-title::after {
+        background-color: white;
+      }
+
+      footer p {
+        font-size: 18px;
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        nav {
+          justify-content: center;
+          padding: 15px 0;
+        }
+
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav ul li {
+          margin: 10px 15px;
+          font-size: 16px;
+        }
+
+        .banner-content {
+          text-align: center;
+          padding: 40px 0;
+        }
+
+        .banner-content .logo {
+          width: 200px;
+          margin-bottom: 10px;
+          margin-left: 0;
+        }
+
+        .banner-content h1 {
+          font-size: 22px;
+          line-height: 1.4;
+          margin-bottom: 25px;
+        }
+
+        .btn {
+          padding: 12px 40px;
+          font-size: 16px;
+        }
+
+        section {
+          padding: 40px 0;
+        }
+
+        .section-title {
+          font-size: 32px;
+          margin-bottom: 25px;
+          align-self: center;
+          text-align: center;
+        }
+
+        #nutshell p {
+          font-size: 18px;
+          text-align: left;
+          margin-bottom: 15px;
+        }
+
+        .solution-box {
+          flex-direction: column;
+          text-align: center;
+          padding: 25px 20px;
+          margin-bottom: 20px;
+        }
+
+        .solution-box .icon {
+          margin-right: 0;
+          margin-bottom: 20px;
+          min-width: auto;
+        }
+
+        .solution-box h3 {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        .solution-box p {
+          font-size: 18px;
+          text-align: left;
+        }
+
+        .partners-logos {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .partners-logos img {
+          width: 150px;
+          margin: 20px 0;
+        }
+
+        footer {
+          text-align: center;
+          padding: 40px 0;
+        }
+
+        footer .section-title {
+          align-self: center;
+        }
+
+        footer p {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav ul li {
+          margin: 8px 10px;
+          font-size: 15px;
+        }
+
+        .banner-content .logo {
+          width: 180px;
+        }
+
+        .banner-content h1 {
+          font-size: 20px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        #nutshell p {
+          font-size: 16px;
+        }
+
+        .solution-box h3 {
+          font-size: 22px;
+        }
+
+        .solution-box p {
+          font-size: 16px;
+        }
+
+        .partners-logos img {
+          width: 130px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="#nutshell">About us</a></li>
+            <li><a href="#solutions">Consulting</a></li>
+            <li><a href="#solutions">HeatVision®</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#contact">Talk to us</a></li>
+          </ul>
+        </nav>
+        <div class="banner-content">
+          <img src="asset/image/Ofek Logo.png" alt="Ofek Logo" class="logo" />
+          <h1>
+            Tailored Manufacturing Solutions From Taiwan for Global Partners:
+            Consulting, HeatVision®, Analytics & AI Innovation
+          </h1>
+          <a href="#contact" class="btn">Talk to us</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="nutshell">
+        <div class="container">
+          <h2 class="section-title">Us, in a nutshell</h2>
+          <p>
+            Founded in 2020, Ofek partners with top S&P 100 companies to
+            optimize their manufacturing operations in Taiwan through tailored
+            consultancy services.
+          </p>
+          <p>
+            Drawing on deep knowledge of Taiwan's supply chain and our
+            engineering expertise, we build strong relationships with local
+            manufacturers, helping partners navigate technical, cultural, and
+            regional challenges for smoother operations.
+          </p>
+          <p>
+            We complement our consulting with HeatVision®, our proprietary
+            platform that integrates real-time data across every stage of
+            manufacturing, from SMT to RMA. By harnessing big data and machine
+            learning, HeatVision® eliminates silos, anticipates errors, improves
+            yields, and reduces defects, turning complex data into actionable
+            insights.
+          </p>
+          <p>
+            Our multilingual team supports partners across Latin America, EAMEA,
+            North America, and Asia-Pacific, with fluency in Mandarin,
+            Cantonese, Hebrew, Spanish, Russian, and English.
+          </p>
+          <p>
+            We're committed to building long-term partnerships based on trust
+            and transparency. We prioritize, always, what's best for our
+            partner, creating lasting value.
+          </p>
+        </div>
+      </section>
+
+      <section id="solutions">
+        <div class="container">
+          <h2 class="section-title">Our solutions and value</h2>
+          <div class="solution-box">
+            <div class="icon">
+              <svg
+                width="80"
+                height="80"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <circle
+                    cx="20"
+                    cy="50"
+                    r="8"
+                    fill="transparent"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="50"
+                    cy="20"
+                    r="8"
+                    fill="transparent"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="50"
+                    cy="80"
+                    r="8"
+                    fill="transparent"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="80"
+                    cy="50"
+                    r="8"
+                    fill="transparent"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <circle cx="50" cy="50" r="12" fill="white" />
+                  <line
+                    x1="20"
+                    y1="50"
+                    x2="50"
+                    y2="50"
+                    stroke="white"
+                    stroke-width="3"
+                  />
+                  <line
+                    x1="50"
+                    y1="20"
+                    x2="50"
+                    y2="50"
+                    stroke="white"
+                    stroke-width="3"
+                  />
+                  <line
+                    x1="50"
+                    y1="80"
+                    x2="50"
+                    y2="50"
+                    stroke="white"
+                    stroke-width="3"
+                  />
+                  <line
+                    x1="80"
+                    y1="50"
+                    x2="50"
+                    y2="50"
+                    stroke="white"
+                    stroke-width="3"
+                  />
+                </g>
+              </svg>
+            </div>
+            <div>
+              <h3>Consulting</h3>
+              <p>
+                Solving manufacturing problems with technical and cultural
+                expertise. Building long-term partnerships based on trust and
+                transparency, creating lasting value.
+              </p>
+            </div>
+          </div>
+          <div class="solution-box">
+            <div class="icon">
+              <img
+                src="asset/image/HeatVision_transparent.png"
+                alt="HeatVision Logo"
+              />
+            </div>
+            <div>
+              <h3>HeatVision®</h3>
+              <p>
+                Bringing real-time clarity to your manufacturing data through
+                machine learning and big data—from SMT to RMA—to eliminate
+                silos, anticipate errors, improve yields, and reduce defects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="partners">
+        <div class="container">
+          <h2 class="section-title">Partners we've worked with</h2>
+          <div class="partners-logos">
+            <img src="asset/image/Hipcam.png" alt="Hipcam" />
+            <img src="asset/image/Annapurna.jpg" alt="Annapurna Labs" />
+            <img src="asset/image/Goldtek.jpg" alt="Goldtek" />
+            <img src="asset/image/Accton.png" alt="Accton" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's talk!</h2>
+        <p>Email us at contact@ofektaiwan.com</p>
+      </div>
+    </footer>
+  </body>
+</html>
