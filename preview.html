@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Ofek - Tailored Manufacturing Solutions From Taiwan for Global Partners
+    </title>
+    <meta
+      name="description"
+      content="Ofek specializes in helping S&P 100 companies optimize their manufacturing operations in Taiwan. Consulting, HeatVision®, Analytics & AI Innovation"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --background: hsl(220, 17%, 7%);
+        --foreground: hsl(213, 31%, 91%);
+        --card: hsl(217, 19%, 12%);
+        --card-foreground: hsl(213, 31%, 91%);
+        --primary: hsl(172, 100%, 41%);
+        --primary-foreground: hsl(220, 17%, 7%);
+        --secondary: hsl(174, 84%, 33%);
+        --secondary-foreground: hsl(213, 31%, 91%);
+        --muted: hsl(215, 20%, 17%);
+        --muted-foreground: hsl(217, 10%, 64%);
+        --accent: hsl(173, 70%, 60%);
+        --accent-foreground: hsl(220, 17%, 7%);
+        --border: hsl(215, 20%, 17%);
+        --input: hsl(215, 20%, 17%);
+        --radius: 12px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(48px);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+        padding: 0;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .logo-text {
+        font-size: 28px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #14b8a6, #0f766e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover .logo-text {
+        background: linear-gradient(135deg, #20c997, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transform: scale(1.05);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted-foreground);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        background: var(--primary);
+        color: #000000;
+        text-decoration: none;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(20, 184, 166, 0.2);
+      }
+
+      .btn:hover {
+        background: var(--secondary);
+        color: #000000;
+        box-shadow: 0 4px 8px rgba(20, 184, 166, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--foreground);
+        border: 1px solid var(--border);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .btn-large {
+        padding: 16px 32px;
+        font-size: 18px;
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--foreground);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 256px;
+        height: 100vh;
+        background: var(--card);
+        border-left: 1px solid var(--border);
+        padding: 24px;
+        z-index: 40;
+      }
+
+      .mobile-menu.active {
+        display: block;
+      }
+
+      .mobile-menu a {
+        display: block;
+        color: var(--muted-foreground);
+        text-decoration: none;
+        padding: 24px 0;
+        width: 100%;
+        text-align: left;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-menu a:hover {
+        color: var(--primary);
+      }
+
+      .mobile-menu .btn {
+        width: 100%;
+        margin-top: 16px;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(20, 184, 166, 0.1) 0%,
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(15, 118, 110, 0.1) 0%,
+            transparent 25%
+          ),
+          linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
+      }
+
+      .hero-content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .hero-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .founded-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--muted);
+        padding: 8px 16px;
+        border-radius: 9999px;
+        width: fit-content;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .founded-text {
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+
+      .hero-title {
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #14b8a6, #0f766e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        color: var(--muted-foreground);
+        line-height: 1.6;
+        max-width: 576px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.875rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #14b8a6, #0f766e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+
+      /* Dashboard Preview */
+      .dashboard-preview {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .tech-border {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-border::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #14b8a6, transparent);
+        animation: tech-scan 3s infinite;
+      }
+
+      @keyframes tech-scan {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      .dashboard-preview::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(20, 184, 166, 0.05),
+          rgba(15, 118, 110, 0.05)
+        );
+        pointer-events: none;
+      }
+
+      .dashboard-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .dashboard-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pulse-glow {
+        width: 16px;
+        height: 16px;
+        background: var(--primary);
+        border-radius: 50%;
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .dashboard-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .metric {
+        background: var(--muted);
+        padding: 16px;
+        border-radius: var(--radius);
+      }
+
+      .metric-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .metric-value.accent {
+        color: var(--accent);
+      }
+
+      .metric-label {
+        font-size: 12px;
+        color: var(--muted-foreground);
+      }
+
+      .analytics-live {
+        background: var(--muted);
+        padding: 16px;
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .analytics-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .analytics-title {
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+
+      .live-badge {
+        font-size: 12px;
+        background: var(--primary);
+        color: var(--primary-foreground);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .progress-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .progress-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .progress-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .progress-dot.primary {
+        background: var(--primary);
+      }
+
+      .progress-dot.accent {
+        background: var(--accent);
+      }
+
+      .progress-label {
+        font-size: 12px;
+      }
+
+      .progress-bar {
+        flex: 1;
+        background: var(--background);
+        height: 4px;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        transition: width 1s ease;
+      }
+
+      .progress-fill.primary {
+        background: var(--primary);
+        width: 80%;
+      }
+
+      .progress-fill.accent {
+        background: var(--accent);
+        width: 60%;
+      }
+
+      /* Floating elements */
+      .floating-element-1 {
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        width: 96px;
+        height: 96px;
+        background: rgba(20, 184, 166, 0.1);
+        border-radius: 50%;
+        filter: blur(40px);
+        animation: pulse 3s infinite;
+      }
+
+      .floating-element-2 {
+        position: absolute;
+        bottom: -16px;
+        left: -16px;
+        width: 128px;
+        height: 128px;
+        background: rgba(15, 118, 110, 0.1);
+        border-radius: 50%;
+        filter: blur(40px);
+        animation: pulse 3s infinite 1s;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 96px 0;
+      }
+
+      .section-bg {
+        background: var(--card);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: var(--muted-foreground);
+        margin-bottom: 64px;
+        max-width: 768px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      /* About Section */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .about-text {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .about-descriptions {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .about-description {
+        font-size: 18px;
+        color: var(--muted-foreground);
+        line-height: 1.6;
+      }
+
+      .language-support {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .language-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .languages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .language-tag {
+        background: var(--muted);
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        font-size: 14px;
+      }
+
+      .value-props {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .feature-card {
+        background: var(--muted);
+        padding: 24px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px -12px rgba(20, 184, 166, 0.25);
+      }
+
+      .feature-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .feature-icon.primary {
+        background: rgba(20, 184, 166, 0.2);
+      }
+
+      .feature-icon.accent {
+        background: rgba(32, 201, 151, 0.2);
+      }
+
+      .feature-icon.secondary {
+        background: rgba(15, 118, 110, 0.2);
+      }
+
+      .feature-text h4 {
+        font-weight: 600;
+        color: var(--foreground);
+        margin-bottom: 8px;
+      }
+
+      .feature-text p {
+        color: var(--muted-foreground);
+        font-size: 14px;
+      }
+
+      /* Services Section */
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+
+      .service-card {
+        background: var(--card);
+        padding: 32px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .service-card.featured {
+        background: linear-gradient(
+          135deg,
+          rgba(20, 184, 166, 0.05),
+          rgba(15, 118, 110, 0.05)
+        );
+        border-color: rgba(20, 184, 166, 0.2);
+      }
+
+      .service-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .service-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .service-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .service-icon.consulting {
+        background: rgba(20, 184, 166, 0.2);
+      }
+
+      .service-icon.heatvision {
+        background: var(--primary);
+      }
+
+      .service-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--foreground);
+      }
+
+      .service-subtitle {
+        color: var(--muted-foreground);
+      }
+
+      .service-description {
+        font-size: 18px;
+        color: var(--muted-foreground);
+        line-height: 1.6;
+      }
+
+      .service-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .service-feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .feature-bullet {
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+
+      .feature-text {
+        color: var(--foreground);
+      }
+
+      .service-link {
+        padding-top: 16px;
+      }
+
+      .link-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .link-button:hover {
+        color: var(--accent);
+      }
+
+      .platform-preview {
+        background: var(--muted);
+        padding: 16px;
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .preview-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .preview-title {
+        font-size: 14px;
+        color: var(--muted-foreground);
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .preview-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .preview-metric {
+        text-align: center;
+      }
+
+      .preview-value {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .preview-value.primary {
+        color: var(--primary);
+      }
+
+      .preview-value.accent {
+        color: var(--accent);
+      }
+
+      .preview-value.secondary {
+        color: var(--secondary);
+      }
+
+      .preview-label {
+        font-size: 12px;
+        color: var(--muted-foreground);
+      }
+
+      /* Partners Section */
+      .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-bottom: 64px;
+      }
+
+      .partner-card {
+        background: var(--muted);
+        padding: 32px;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 600;
+        color: var(--muted-foreground);
+        transition: transform 0.3s ease;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .partner-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .benefits {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+
+      .benefit {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .benefit-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+      }
+
+      .benefit-icon.primary {
+        background: rgba(20, 184, 166, 0.2);
+      }
+
+      .benefit-icon.accent {
+        background: rgba(32, 201, 151, 0.2);
+      }
+
+      .benefit-icon.secondary {
+        background: rgba(15, 118, 110, 0.2);
+      }
+
+      .benefit-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .benefit-description {
+        color: var(--muted-foreground);
+      }
+
+      /* Contact Section */
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .contact-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .contact-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .contact-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-icon.email {
+        background: rgba(20, 184, 166, 0.2);
+      }
+
+      .contact-icon.location {
+        background: rgba(32, 201, 151, 0.2);
+      }
+
+      .contact-icon.time {
+        background: rgba(15, 118, 110, 0.2);
+      }
+
+      .contact-details h4 {
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .contact-details a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-details a:hover {
+        color: var(--accent);
+      }
+
+      .contact-details .detail {
+        color: var(--muted-foreground);
+      }
+
+      .multilingual-support {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .multilingual-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .multilingual-description {
+        color: var(--muted-foreground);
+      }
+
+      .contact-form {
+        background: var(--card);
+        padding: 32px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-label {
+        font-weight: 500;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 12px;
+        background: var(--input);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--foreground);
+        font-family: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit-button {
+        width: 100%;
+        padding: 16px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        padding: 64px 0 32px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 32px;
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .footer-logo .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #14b8a6, #0f766e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+      }
+
+      .footer-description {
+        color: var(--muted-foreground);
+        max-width: 384px;
+        line-height: 1.6;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-links a {
+        color: var(--muted-foreground);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 14px;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+      }
+
+      .footer-links button {
+        background: none;
+        border: none;
+        color: var(--muted-foreground);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 14px;
+        text-align: left;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .footer-links button:hover {
+        color: var(--primary);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+        color: var(--muted-foreground);
+        font-size: 14px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .hero-title {
+          font-size: 4rem;
+        }
+
+        .section-title {
+          font-size: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 32px;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .about-content,
+        .services-grid,
+        .contact-content {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .partners-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .benefits {
+          grid-template-columns: 1fr;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 32px;
+        }
+
+        .section {
+          padding: 64px 0;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .section-subtitle {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 12px;
+        }
+
+        .nav-container {
+          padding: 0 12px;
+        }
+
+        .hero-content {
+          padding: 0 12px;
+        }
+
+        .dashboard-preview {
+          padding: 24px;
+        }
+
+        .service-card {
+          padding: 24px;
+        }
+
+        .contact-form {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <div class="logo" data-testid="logo-ofek">
+          <span class="logo-text">Ofek</span>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#about" data-testid="nav-about">About</a></li>
+          <li><a href="#services" data-testid="nav-services">Services</a></li>
+          <li><a href="#partners" data-testid="nav-partners">Partners</a></li>
+          <li>
+            <a
+              href="#contact"
+              class="btn"
+              data-testid="nav-contact"
+              style="color: #000000"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="mobile-menu-btn"
+          onclick="toggleMobileMenu()"
+          data-testid="button-mobile-menu"
+        >
+          <span id="menu-icon">☰</span>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu" data-testid="menu-mobile">
+        <a
+          href="#about"
+          onclick="toggleMobileMenu()"
+          data-testid="nav-mobile-about"
+          >About</a
+        >
+        <a
+          href="#services"
+          onclick="toggleMobileMenu()"
+          data-testid="nav-mobile-services"
+          >Services</a
+        >
+        <a
+          href="#partners"
+          onclick="toggleMobileMenu()"
+          data-testid="nav-mobile-partners"
+          >Partners</a
+        >
+        <a
+          href="#contact"
+          class="btn"
+          onclick="toggleMobileMenu()"
+          data-testid="nav-mobile-contact"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero hero-pattern" data-testid="section-hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-intro">
+            <div class="founded-badge" data-testid="badge-founded">
+              <div class="status-dot"></div>
+              <span class="founded-text">Founded in 2020</span>
+            </div>
+
+            <h1 class="hero-title" data-testid="heading-hero">
+              <span class="gradient-text">Tailored</span><br />
+              Manufacturing<br />
+              <span style="color: var(--muted-foreground)">Solutions</span>
+            </h1>
+
+            <p class="hero-subtitle" data-testid="text-hero-description">
+              From Taiwan for Global Partners: Consulting, HeatVision®,
+              Analytics & AI Innovation
+            </p>
+          </div>
+
+          <div class="hero-buttons">
+            <a
+              href="#services"
+              class="btn btn-large"
+              data-testid="button-explore-solutions"
+            >
+              Explore Solutions
+            </a>
+            <a
+              href="#contact"
+              class="btn btn-outline btn-large"
+              data-testid="button-get-in-touch"
+            >
+              Get In Touch
+            </a>
+          </div>
+
+          <div class="stats">
+            <div class="stat" data-testid="stat-partners">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">S&P Partners</div>
+            </div>
+            <div class="stat" data-testid="stat-languages">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Languages</div>
+            </div>
+            <div class="stat" data-testid="stat-regions">
+              <div class="stat-number">4</div>
+              <div class="stat-label">Regions</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="position: relative">
+          <div
+            class="dashboard-preview tech-border"
+            data-testid="dashboard-preview"
+          >
+            <div class="dashboard-content">
+              <div class="dashboard-header">
+                <div class="pulse-glow"></div>
+                <span class="dashboard-title">HeatVision® Live Dashboard</span>
+              </div>
+
+              <div class="metrics">
+                <div class="metric" data-testid="metric-yield">
+                  <div class="metric-value">98.7%</div>
+                  <div class="metric-label">Yield Rate</div>
+                </div>
+                <div class="metric" data-testid="metric-defects">
+                  <div class="metric-value accent">-15%</div>
+                  <div class="metric-label">Defects</div>
+                </div>
+              </div>
+
+              <div class="analytics-live" data-testid="analytics-live">
+                <div class="analytics-header">
+                  <span class="analytics-title">Real-time Analytics</span>
+                  <span class="live-badge">LIVE</span>
+                </div>
+                <div class="progress-items">
+                  <div class="progress-item">
+                    <div class="progress-dot primary"></div>
+                    <span class="progress-label">SMT Process</span>
+                    <div class="progress-bar">
+                      <div class="progress-fill primary"></div>
+                    </div>
+                  </div>
+                  <div class="progress-item">
+                    <div class="progress-dot accent"></div>
+                    <span class="progress-label">Quality Control</span>
+                    <div class="progress-bar">
+                      <div class="progress-fill accent"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-element-1"></div>
+          <div class="floating-element-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-bg" data-testid="section-about">
+      <div class="container">
+        <h2 class="section-title" data-testid="heading-about">
+          Us, in a <span class="gradient-text">nutshell</span>
+        </h2>
+        <p class="section-subtitle" data-testid="text-about-intro">
+          Founded in 2020, Ofek partners with top S&P 100 companies to optimize
+          their manufacturing operations in Taiwan through tailored consultancy
+          services.
+        </p>
+
+        <div class="about-content">
+          <div class="about-text">
+            <div class="about-descriptions">
+              <p
+                class="about-description"
+                data-testid="text-about-description-1"
+              >
+                Drawing on deep knowledge of Taiwan's supply chain and our
+                engineering expertise, we build strong relationships with local
+                manufacturers, helping partners navigate technical, cultural,
+                and regional challenges for smoother operations.
+              </p>
+
+              <p
+                class="about-description"
+                data-testid="text-about-description-2"
+              >
+                We complement our consulting with HeatVision®, our proprietary
+                platform that integrates real-time data across every stage of
+                manufacturing, from SMT to RMA.
+              </p>
+            </div>
+
+            <div class="language-support">
+              <h3 class="language-title" data-testid="heading-language-support">
+                Global Language Support
+              </h3>
+              <div class="languages" data-testid="list-languages">
+                <span class="language-tag" data-testid="language-mandarin"
+                  >Mandarin</span
+                >
+                <span class="language-tag" data-testid="language-cantonese"
+                  >Cantonese</span
+                >
+                <span class="language-tag" data-testid="language-hebrew"
+                  >Hebrew</span
+                >
+                <span class="language-tag" data-testid="language-spanish"
+                  >Spanish</span
+                >
+                <span class="language-tag" data-testid="language-russian"
+                  >Russian</span
+                >
+                <span class="language-tag" data-testid="language-english"
+                  >English</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="value-props">
+            <div class="feature-card card-hover" data-testid="card-trust">
+              <div class="feature-content">
+                <div class="feature-icon primary">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--primary)"
+                  >
+                    <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                    <path
+                      d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"
+                    />
+                    <path d="m21 3 1 11h-2" />
+                    <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                    <path d="M3 4h8" />
+                  </svg>
+                </div>
+                <div class="feature-text">
+                  <h4>Trust & Transparency</h4>
+                  <p>
+                    Building long-term partnerships based on what's best for our
+                    partners.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-card card-hover" data-testid="card-global">
+              <div class="feature-content">
+                <div class="feature-icon accent">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--accent)"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m4.93 4.93 4.24 4.24" />
+                    <path d="m14.83 9.17 4.24-4.24" />
+                    <path d="m14.83 14.83 4.24 4.24" />
+                    <path d="m9.17 14.83-4.24 4.24" />
+                    <circle cx="12" cy="12" r="4" />
+                  </svg>
+                </div>
+                <div class="feature-text">
+                  <h4>Global Reach</h4>
+                  <p>
+                    Supporting partners across Latin America, EAMEA, North
+                    America, and Asia-Pacific.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-card card-hover" data-testid="card-ai">
+              <div class="feature-content">
+                <div class="feature-icon secondary">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--secondary)"
+                  >
+                    <path
+                      d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"
+                    />
+                    <path
+                      d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"
+                    />
+                  </svg>
+                </div>
+                <div class="feature-text">
+                  <h4>AI-Powered Insights</h4>
+                  <p>
+                    Harnessing big data and machine learning to turn complex
+                    data into actionable insights.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section" data-testid="section-services">
+      <div class="container">
+        <h2 class="section-title" data-testid="heading-services">
+          Our <span class="gradient-text">Solutions</span> & Value
+        </h2>
+        <p class="section-subtitle" data-testid="text-services-description">
+          Comprehensive manufacturing optimization through consulting expertise
+          and cutting-edge technology.
+        </p>
+
+        <div class="services-grid">
+          <div
+            class="service-card tech-border card-hover"
+            data-testid="card-consulting"
+          >
+            <div class="service-content">
+              <div class="service-header">
+                <div class="service-icon consulting">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--primary)"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22 11-3-3m0 0-3 3m3-3v6" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">Consulting</h3>
+                  <p class="service-subtitle">Technical & Cultural Expertise</p>
+                </div>
+              </div>
+
+              <p
+                class="service-description"
+                data-testid="text-consulting-description"
+              >
+                Solving manufacturing problems with technical and cultural
+                expertise. Building long-term partnerships based on trust and
+                transparency, creating lasting value.
+              </p>
+
+              <ul
+                class="service-features"
+                data-testid="list-consulting-features"
+              >
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text">Supply Chain Optimization</span>
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text"
+                    >Cultural & Regional Navigation</span
+                  >
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text">Technical Problem Solving</span>
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text"
+                    >Local Manufacturer Relationships</span
+                  >
+                </li>
+              </ul>
+
+              <div class="service-link">
+                <a
+                  href="#contact"
+                  class="link-button"
+                  data-testid="button-consulting-learn-more"
+                >
+                  <span>Learn More</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card featured tech-border card-hover"
+            data-testid="card-heatvision"
+          >
+            <div class="service-content">
+              <div class="service-header">
+                <div class="service-icon heatvision">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--primary-foreground)"
+                  >
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="service-title">HeatVision®</h3>
+                  <p class="service-subtitle">
+                    Real-time Manufacturing Intelligence
+                  </p>
+                </div>
+              </div>
+
+              <p
+                class="service-description"
+                data-testid="text-heatvision-description"
+              >
+                Bringing real-time clarity to your manufacturing data through
+                machine learning and big data—from SMT to RMA—to eliminate
+                silos, anticipate errors, improve yields, and reduce defects.
+              </p>
+
+              <ul
+                class="service-features"
+                data-testid="list-heatvision-features"
+              >
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text">Real-time Data Integration</span>
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text">Machine Learning Analytics</span>
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text"
+                    >Error Anticipation & Prevention</span
+                  >
+                </li>
+                <li class="service-feature">
+                  <div class="feature-bullet"></div>
+                  <span class="feature-text"
+                    >Yield Improvement & Defect Reduction</span
+                  >
+                </li>
+              </ul>
+
+              <div class="platform-preview" data-testid="platform-preview">
+                <div class="preview-header">
+                  <span class="preview-title">SMT → QC → Assembly → RMA</span>
+                  <span class="live-badge">LIVE</span>
+                </div>
+                <div class="preview-metrics">
+                  <div class="preview-metric">
+                    <div class="preview-value primary">99.2%</div>
+                    <div class="preview-label">Accuracy</div>
+                  </div>
+                  <div class="preview-metric">
+                    <div class="preview-value accent">-23%</div>
+                    <div class="preview-label">Defects</div>
+                  </div>
+                  <div class="preview-metric">
+                    <div class="preview-value secondary">+18%</div>
+                    <div class="preview-label">Yield</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-link">
+                <a
+                  href="#contact"
+                  class="link-button"
+                  data-testid="button-heatvision-explore"
+                >
+                  <span>Explore Platform</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section
+      id="partners"
+      class="section section-bg"
+      data-testid="section-partners"
+    >
+      <div class="container">
+        <h2 class="section-title" data-testid="heading-partners">
+          Partners We've <span class="gradient-text">Worked With</span>
+        </h2>
+        <p class="section-subtitle" data-testid="text-partners-description">
+          Trusted by industry leaders across multiple sectors.
+        </p>
+
+        <div class="partners-grid" data-testid="grid-partners">
+          <div class="partner-card card-hover" data-testid="partner-hipcam">
+            Hipcam
+          </div>
+          <div
+            class="partner-card card-hover"
+            data-testid="partner-annapurna-labs"
+          >
+            Annapurna Labs
+          </div>
+          <div class="partner-card card-hover" data-testid="partner-goldtek">
+            Goldtek
+          </div>
+          <div class="partner-card card-hover" data-testid="partner-accton">
+            Accton
+          </div>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit" data-testid="benefit-results">
+            <div class="benefit-icon primary">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="color: var(--primary)"
+              >
+                <path d="m22 7-8.5 8.5-5.5-5.5-4 4" />
+                <path d="M16 7h6v6" />
+              </svg>
+            </div>
+            <h3 class="benefit-title">Proven Results</h3>
+            <p class="benefit-description">
+              Measurable improvements in yield, quality, and operational
+              efficiency.
+            </p>
+          </div>
+          <div class="benefit" data-testid="benefit-enterprise">
+            <div class="benefit-icon accent">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="color: var(--accent)"
+              >
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                />
+              </svg>
+            </div>
+            <h3 class="benefit-title">Enterprise Grade</h3>
+            <p class="benefit-description">
+              Secure, scalable solutions designed for S&P 100 companies.
+            </p>
+          </div>
+          <div class="benefit" data-testid="benefit-support">
+            <div class="benefit-icon secondary">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="color: var(--secondary)"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12,6 12,12 16,14" />
+              </svg>
+            </div>
+            <h3 class="benefit-title">24/7 Support</h3>
+            <p class="benefit-description">
+              Round-the-clock technical support across all time zones.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" data-testid="section-contact">
+      <div class="container">
+        <h2 class="section-title" data-testid="heading-contact">
+          Let's <span class="gradient-text">Talk!</span>
+        </h2>
+        <p class="section-subtitle" data-testid="text-contact-description">
+          Ready to optimize your manufacturing operations? Get in touch with our
+          team.
+        </p>
+
+        <div class="contact-content">
+          <div class="contact-info" data-testid="contact-info">
+            <div class="contact-intro">
+              <h3 class="contact-title" data-testid="heading-get-in-touch">
+                Get In Touch
+              </h3>
+
+              <div class="contact-item" data-testid="contact-email">
+                <div class="contact-icon email">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--primary)"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <a
+                    href="mailto:contact@ofektaiwan.com"
+                    data-testid="link-email"
+                  >
+                    contact@ofektaiwan.com
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item" data-testid="contact-location">
+                <div class="contact-icon location">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--accent)"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <h4>Location</h4>
+                  <div class="detail">
+                    7 F., No. 76, Nanjing W. Rd., Datong Dist., Taipei City
+                    10352, Taiwan
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-item" data-testid="contact-response-time">
+                <div class="contact-icon time">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: var(--secondary)"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12,6 12,12 16,14" />
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <h4>Response Time</h4>
+                  <div class="detail">Within 24 hours</div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="multilingual-support"
+              data-testid="multilingual-support"
+            >
+              <h4 class="multilingual-title">Multilingual Support</h4>
+              <p class="multilingual-description">
+                Our team is fluent in Mandarin, Cantonese, Hebrew, Spanish,
+                Russian, and English. Communicate with us in your preferred
+                language.
+              </p>
+            </div>
+          </div>
+
+          <form
+            class="contact-form tech-border"
+            onsubmit="handleSubmit(event)"
+            data-testid="contact-form"
+          >
+            <div class="form-grid">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name *</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Your name"
+                    required
+                    data-testid="input-name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Your company"
+                    data-testid="input-company"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="your.email@company.com"
+                  required
+                  data-testid="input-email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Service Interest</label>
+                <select class="form-select" data-testid="select-service">
+                  <option value="">Select a service...</option>
+                  <option value="consulting">Manufacturing Consulting</option>
+                  <option value="heatvision">HeatVision® Platform</option>
+                  <option value="both">Both Services</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Message *</label>
+                <textarea
+                  class="form-textarea"
+                  placeholder="Tell us about your manufacturing challenges and how we can help..."
+                  required
+                  data-testid="textarea-message"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn submit-button"
+                data-testid="button-submit-contact"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" data-testid="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand" data-testid="footer-brand">
+            <div class="footer-logo">
+              <span class="logo-text">Ofek</span>
+            </div>
+            <p class="footer-description" data-testid="text-footer-description">
+              Tailored manufacturing solutions from Taiwan for global partners.
+              Building long-term partnerships based on trust and transparency.
+            </p>
+          </div>
+
+          <div class="footer-section" data-testid="footer-services">
+            <h4>Services</h4>
+            <ul class="footer-links">
+              <li>
+                <button
+                  onclick="scrollToSection('services')"
+                  data-testid="footer-link-consulting"
+                >
+                  Manufacturing Consulting
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="scrollToSection('services')"
+                  data-testid="footer-link-heatvision"
+                >
+                  HeatVision® Platform
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="scrollToSection('services')"
+                  data-testid="footer-link-supply-chain"
+                >
+                  Supply Chain Optimization
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="scrollToSection('services')"
+                  data-testid="footer-link-ai"
+                >
+                  Analytics & AI
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section" data-testid="footer-contact">
+            <h4>Contact</h4>
+            <ul class="footer-links">
+              <li>Taiwan</li>
+              <li>
+                <a
+                  href="mailto:contact@ofektaiwan.com"
+                  data-testid="footer-email"
+                  >contact@ofektaiwan.com</a
+                >
+              </li>
+              <li>Multi-language support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom" data-testid="text-copyright">
+          © 2025 Ofek. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+
+        mobileMenu.classList.toggle("active");
+        menuIcon.textContent = mobileMenu.classList.contains("active")
+          ? "✕"
+          : "☰";
+      }
+
+      // Smooth scrolling for navigation links
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop - 80; // Account for fixed nav
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      // Add event listeners for all navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute("href").substring(1);
+          scrollToSection(sectionId);
+        });
+      });
+
+      // Form submission
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const button = event.target.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+
+        // Show loading state
+        button.textContent = "Sending...";
+        button.disabled = true;
+
+        // Simulate API call
+        setTimeout(() => {
+          alert(
+            "Thank you for your message! We'll get back to you within 24 hours."
+          );
+          event.target.reset();
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 1000);
+      }
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe animated elements
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(
+          ".feature-card, .service-card, .partner-card, .benefit"
+        );
+
+        animatedElements.forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
+        });
+      });
+
+      // Add parallax effect to hero section
+      let ticking = false;
+
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        const rate = scrolled * -0.2;
+
+        if (hero && scrolled < hero.offsetHeight) {
+          hero.style.transform = `translateY(${rate}px)`;
+        }
+
+        ticking = false;
+      }
+
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener("scroll", requestTick);
+    </script>
+  </body>
+</html>
