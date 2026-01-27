@@ -1,0 +1,750 @@
+/* --- 基礎設定 --- */
+html {
+    scroll-behavior: smooth;
+    /* 點擊選單平滑滾動 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    /* 去除底線 */
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* 讓字體更平滑 */
+    font-family: 'Lato', 'Roboto', 'Arial', sans-serif;
+    /* 改為 Lato */
+    background-color: #fff;
+    color: #4B4E53;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+
+.container {
+    margin: 0 auto;
+}
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.25rem 1.5rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+.logo-dark {
+    width: 100px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    display: none;
+}
+
+.logo>img {
+    width: 100%;
+}
+
+
+
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.25rem 1.5rem;
+    color: white;
+    /* 預設文字白色 */
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+
+
+
+/* Menu 文字樣式與 Hover 效果 */
+.nav-links a {
+    color: white;
+    /* 強制文字為白色 */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #4DA7A8;
+    /* 指定的 Hover 顏色 */
+}
+
+.nav-scrolled {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1.5rem;
+    color: #000000;
+}
+
+/* --- 當 Navbar 捲動後 (nav-scrolled 啟動) --- */
+.nav-scrolled .logo {
+    display: none;
+    /* 隱藏原本的白色 Logo */
+}
+
+.nav-scrolled .logo-dark {
+    display: block;
+    /* 顯示捲動後的 Logo */
+    color: #4DA7A8;
+    /* 換成你指定的藍綠色，或放圖片路徑 */
+}
+
+/* 捲動後連結顏色需變深，但 Hover 仍維持綠色 */
+.nav-scrolled .nav-links a {
+    color: #111827;
+}
+
+.nav-scrolled .nav-links a:hover {
+    color: #4DA7A8;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* --- Hero --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+.bg-hero {
+    background-image: url('../images/Banner.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    color: white;
+    max-width: 1000px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+/* Learn More 按鈕與箭頭 */
+.btn-outline {
+    width: fit-content;
+    border: 1px solid white;
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+.btn-arrow {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* 下方浮動箭頭指示器 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
+
+.floating-arrow {
+    animation: breathing 2s ease-in-out infinite;
+}
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(8px);
+        opacity: 1;
+    }
+}
+
+/* --- The Mission 淡入效果 --- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 其他區塊樣式 --- */
+.section {
+    padding: 6rem 0;
+}
+
+.grid-2 {
+    width: 800px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-3 {
+    width: 100%;
+    margin: 0 auto;
+    /* position: relative;  */
+}
+
+.grid-3 .img_taipei101 {
+    width: 640px;
+    max-width: 640px;
+
+}
+
+.sub-title {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.main-title {
+    font-size: 2.25rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.main-title .title-light {
+    font-size: 40px;
+    position: relative;
+    font-weight: 200;
+}
+
+.main-title .title-bold {
+    font-size: 40px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.title-light::after {
+    display: inline-flex;
+    content: '';
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: -20px;
+    top: -12px;
+    background: url('../images/Ofek_arrow.svg') no-repeat center / contain;
+}
+
+.description {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.feature-card {
+    display: flex;
+    justify-content: flex-start;
+    background: white;
+    padding: 2rem 0px;
+}
+
+.push-down {
+    margin-top: 2rem;
+}
+
+.feature-num {
+    width: 48px;
+    height: 100%;
+    flex-shrink: 0;
+    margin-right: 24px;
+}
+
+.feature-label {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.bg-expertise {
+    position: relative;
+    height: 1170px;
+    background-color: #1A1B1F;
+    background-size: 640px;
+    background-position: center;
+    color: white;
+    padding: 60px 0 180px;
+    background-image: url('../images/img_taipei101_2.png');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+}
+
+.card-outer {
+    margin-top: 70px;
+    padding-left: 30%;
+}
+
+.diagonal-card-1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    background: #D9D9D9;
+    padding: 110px 72px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    clip-path: polygon(7% 0, 100% 0%, 100% 100%, 0 100%, 0 13%);
+    border-bottom:solid 10px #4DA7A8;
+    margin-left: 120px;
+}
+
+
+
+
+
+.diagonal-card-1 .outer {
+    margin-left: 24px;
+}
+
+.diagonal-card-2 {
+    /* position: absolute; */
+    /* bottom:73px;
+    right: 400px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    background: #B8B8B8;
+    padding: 110px 72px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -10px;
+}
+
+.diagonal-card-2 .outer {
+    margin-left: 24px;
+}
+
+
+.card-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #4B4E53;
+}
+
+.card-text {
+    font-size: 20px;
+    font-weight: 300;
+    color: #4B4E53;
+}
+
+.card-img {
+    width: 115px;
+    flex-shrink: 0;
+}
+
+.card-img img {
+    width: 100%;
+    display: block;
+}
+
+
+/* 合作夥伴 */
+.partners-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.partners-logo-flex {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-item {
+    width: 210px;
+}
+
+.logo-item img {
+    width: 100%
+}
+
+/* Footer */
+.footer {
+    background: #1A1B1F;
+    color: white;
+    padding: 100px 10% 4px;
+}
+
+.footer-logo {
+    width: 150px;
+    margin-bottom: 24px;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    max-width: 600px;
+}
+
+.footer-loction {
+    display: flex;
+    color: #9ca3af;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.footer-loction>img {
+    width: 16px;
+    margin-right: 8px;
+}
+
+.footer-links-grid {
+    width: 100%;
+    max-width: 330px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.footer-header {
+    color: #ffffff;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.footer-links-grid img {
+    width: 32px;
+
+}
+
+.footer-email {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.copyright {
+    padding-top: 80px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-align: left;
+    color: #fff;
+}
+
+/* RWD 手機版 */
+@media (max-width: 1044px) {
+    .footer-links-grid {
+        margin-top: 24px;
+        width: 100%;
+        max-width: 330px;
+        display: flex;
+        justify-content: flex-start;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .card-outer {
+        padding-left: 10%;
+    }
+}
+
+@media (max-width: 868px) {
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* .menu-toggle > svg{ color: #000000; } */
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 手機版選單開啟時，文字預設為深色以利閱讀 */
+    .nav-links a {
+        color: #111827;
+    }
+
+    .diagonal-card-1 {
+        margin-left: 0px;
+        padding: 60px 60px;
+    }
+
+    .diagonal-card-2 {
+        margin-left: 0px;
+        padding: 60px 60px;
+    }
+
+    .partners-logo-flex {
+        width: 60%;
+    }
+
+    .logo-item {
+        margin-top: 24px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+
+}
+
+
+
+
+@media (max-width: 768px) {
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .push-down {
+        margin-top: 0;
+    }
+
+    .footer-header {
+        color: #ffffff;
+        font-size: 32px;
+        text-transform: uppercase;
+    }
+
+    .footer-email {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: normal;
+        cursor: pointer;
+
+    }
+
+    .diagonal-card-1 {
+        display: block;
+        margin-left: 0px;
+        padding: 40px 40px;
+    }
+
+    .diagonal-card-2 {
+        display: block;
+        margin-left: 0px;
+        padding: 40px 40px;
+    }
+
+    .card-outer {
+        padding: 0 4%;
+    }
+
+    .card-text {
+        font-size: 16px;
+        font-weight: 300;
+        color: #4B4E53;
+    }
+
+    .diagonal-card-1 .outer {
+        margin: 0;
+    }
+
+    .diagonal-card-2 .outer {
+        margin: 0;
+    }
+
+    .card-title {
+        margin: 24px 0;
+    }
+
+    .bg-expertise {
+        background-image: none;
+    }
+
+    .partners-logo-flex {
+        width: 80%;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+
+}
+
+@media (max-width: 425px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .main-title .title-light {
+        font-size: 32px;
+
+    }
+
+    .main-title .title-bold {
+        font-size: 32px;
+    }
+
+    .title-light::after {
+        display: inline-flex;
+        content: '';
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: -20px;
+        top: -12px;
+        background: url('../images/Ofek_arrow.svg') no-repeat center / contain;
+    }
+
+    .feature-card {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .feature-num {
+        flex-shrink: 1;
+        margin: 0 auto;
+    }
+
+    .logo-item {
+        margin-top: 32px;
+    }
+
+
+}
