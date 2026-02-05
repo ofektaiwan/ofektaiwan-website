@@ -110,7 +110,7 @@ ul {
     gap: 2rem;
     font-size: 0.875rem;
     font-weight: 500;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 0.1em;
 }
 
@@ -280,6 +280,7 @@ ul {
 /* --- 其他區塊樣式 --- */
 .section {
     padding: 6rem 0;
+    overflow-x: hidden;
 }
 
 .grid-2 {
@@ -438,7 +439,17 @@ ul {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #4B4E53;
+    color: #4DA7A8; 
+    position: relative;
+}
+
+.diagonal-card-2 .card-title::after {
+    display: block;
+    content: '®';
+    font-size: 18px;
+    position: absolute;
+    left: 122px;
+    top: 2px;
 }
 
 .card-text {
@@ -480,6 +491,10 @@ ul {
 
 .logo-item {
     width: 210px;
+}
+
+.logo-item-amazon{
+    width: 317px;
 }
 
 .logo-item img {
@@ -535,19 +550,29 @@ ul {
     text-transform: uppercase;
 }
 
+
+.footer-link-outer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
 .footer-links-grid img {
     width: 32px;
 
 }
 
+
 .footer-email {
     color: #ffffff;
     font-size: 20px;
     font-weight: normal;
+    margin-bottom: 16px;
+    display: block;
 }
 
 .copyright {
-    padding-top: 80px;
+    padding-top: 60px;
     margin-bottom: 8px;
     font-size: 12px;
     text-align: left;
@@ -569,6 +594,9 @@ ul {
 
     .card-outer {
         padding-left: 10%;
+    }
+    .footer-link-outer{
+        justify-content: flex-start;
     }
 }
 
