@@ -96,9 +96,8 @@ crops, dark mattes, no shadows, glow, blur, grain, or decorative overlays.
 
 ## Deploying
 
-`.github/workflows/deploy.yml` builds and publishes on every push to `main`. It only takes effect
-once the Pages source is set to **GitHub Actions** — see `DEPLOY.md` for the one-time cutover
-checklist and the rollback path.
+`.github/workflows/deploy.yml` builds and publishes on every push to `main`. See `DEPLOY.md` for the
+rollback path, the checks to run after a deploy, and the traps around changing Pages settings.
 
 `public/CNAME` must keep containing `www.ofektaiwan.com`. An Actions deploy replaces the entire
 published tree, so if that file goes missing the custom domain breaks.
