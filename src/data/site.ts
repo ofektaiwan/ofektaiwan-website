@@ -1,7 +1,17 @@
+import type { SiteProfile } from './site-profiles';
+
+/*
+ * Replaced at build time by vite.define in astro.config.mjs, which is where the
+ * env read lives. Declared rather than imported because src/ has no `process`.
+ */
+declare const __SITE_PROFILE__: SiteProfile;
+
+const profile = __SITE_PROFILE__;
+
 export const site = {
   name: 'Ofek',
-  url: 'https://www.ofektaiwan.com',
-  email: 'contact@ofektaiwan.com',
+  url: `https://${profile.domain}`,
+  email: profile.email,
   linkedin: 'https://www.linkedin.com/company/ofekglobal',
 } as const;
 

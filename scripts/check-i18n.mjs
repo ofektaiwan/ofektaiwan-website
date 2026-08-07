@@ -5,7 +5,15 @@ import { fileURLToPath } from 'node:url';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = path.join(SCRIPT_DIR, '..', 'dist');
-const ORIGIN = 'https://www.ofektaiwan.com';
+
+/*
+ * Resolved the same way astro.config.mjs resolves it, so this validates the
+ * build that actually ran rather than a hardcoded domain. Hardcoded, it passed
+ * an ofek.ai build only by never being reached, then failed every canonical.
+ */
+const { resolveProfile } = await import('../src/data/site-profiles.ts');
+const PROFILE = resolveProfile(process.env.SITE_PROFILE ?? process.env.GITHUB_REPOSITORY_OWNER);
+const ORIGIN = `https://${PROFILE.domain}`;
 
 const locales = [
   { locale: 'en', file: 'index.html', path: '/', lang: 'en', dir: 'ltr', marker: 'TRUSTED INSIGHTS INTO' },
@@ -67,6 +75,28 @@ for (const definition of locales) {
     );
   }
 }
+
+/*
+ * The custom domain lives or dies by this file: an Actions deploy replaces the
+ * whole published tree, so a build that drops or misspells CNAME takes the
+ * domain down. Now that it is generated, assert it rather than trusting it.
+ */
+try {
+  const cname = await readFile(path.join(DIST_DIR, 'CNAME'), 'utf8');
+  if (cname !== PROFILE.domain) {
+    problems.push(`CNAME: expected ${JSON.stringify(PROFILE.domain)}, got ${JSON.stringify(cname)}`);
+  }
+} catch {
+  problems.push('CNAME: missing dist/CNAME — the custom domain would break on deploy');
+}
+
+let robots = '';
+try {
+  robots = await readFile(path.join(DIST_DIR, 'robots.txt'), 'utf8');
+} catch {
+  problems.push('robots: missing dist/robots.txt');
+}
+expectIncludes(robots, `Sitemap: ${ORIGIN}/sitemap.xml`, 'robots');
 
 for (const removedPath of ['en', 'he', 'es']) {
   try {
