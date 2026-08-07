@@ -231,6 +231,80 @@ async function checkHeroLayering(browser, url) {
   return problems;
 }
 
+/*
+ * Proves the Consulting -> HeatVision handoff is fully resolved once the nav
+ * anchor parks on it. Nothing static can catch this: every rule involved is
+ * valid CSS, so check-css.mjs passes while the scene renders half-finished.
+ *
+ * The failure it guards against: [data-seam='consulting-heatvision'] is the
+ * only marker inside a sticky scene, so it freezes when .expertise-section
+ * pins, which stretches its cover range (900px of travel became a 1324px range
+ * at 1512x900). Progress therefore reads ~51% at the pin where the geometry
+ * suggests ~74%, and any range ending above that never completes -- a range
+ * ending at 53% left the gallery sheared by ~40px at exactly the scroll
+ * position the HeatVision nav link lands on.
+ *
+ * Heights are chosen to straddle the scene-stack gate (min-height: 820px):
+ * 830 is the shortest viewport that still pins and so has the least headroom.
+ */
+const HANDOFF_LAYERS = [
+  ['consulting media', '.consulting-stripe [data-transition-layer="media"]'],
+  ['consulting copy', '.consulting-stripe [data-transition-layer="copy"]'],
+  ['heatvision copy', '.heatvision-stripe [data-transition-layer="copy"]'],
+  ['heatvision stage', '.heatvision-stripe [data-transition-layer="stage"]'],
+  ['heatvision edge', '.heatvision-transition-edge'],
+];
+
+async function checkSceneHandoff(browser, url) {
+  const problems = [];
+  for (const [width, height] of [[1512, 830], [1440, 900], [1512, 900], [1920, 1080]]) {
+    const context = await browser.newContext({ viewport: { width, height } });
+    const page = await context.newPage();
+    await page.goto(url, { waitUntil: 'networkidle' });
+
+    const link = page.locator('#nav-links a[href="#heatVision"]').first();
+    if (!(await link.count())) {
+      problems.push(`${width}x${height}: no HeatVision nav link to drive`);
+      await context.close();
+      continue;
+    }
+    await link.click();
+    await page.waitForTimeout(1400); // smooth scroll settles
+
+    const state = await page.evaluate((layers) => {
+      const stage = document.querySelector('.heatvision-stripe [data-transition-layer="stage"]');
+      // Scroll-driven animations only exist where the browser supports them.
+      if (!stage || getComputedStyle(stage).animationName === 'none') return { skipped: true };
+      return {
+        skipped: false,
+        clip: getComputedStyle(stage).clipPath,
+        unresolved: layers
+          .map(([label, selector]) => {
+            const el = document.querySelector(selector);
+            const progress = el?.getAnimations()[0]?.effect?.getComputedTiming?.().progress;
+            return { label, progress };
+          })
+          .filter(({ progress }) => typeof progress === 'number' && progress < 0.999),
+      };
+    }, HANDOFF_LAYERS);
+
+    // Chromium-only: Firefox/Safari take the motion.ts WAAPI fallback instead.
+    if (!state.skipped) {
+      for (const { label, progress } of state.unresolved) {
+        problems.push(
+          `${width}x${height}: ${label} is only ${(progress * 100).toFixed(1)}% resolved where the HeatVision anchor parks`,
+        );
+      }
+      const inset = [...state.clip.matchAll(/([\d.]+)%/g)].map((m) => Number(m[1]));
+      if (inset.some((v) => v > 0.5)) {
+        problems.push(`${width}x${height}: HeatVision gallery still clipped at rest (${state.clip})`);
+      }
+    }
+    await context.close();
+  }
+  return problems;
+}
+
 /** Proves the partner rail contains one accessible seven-logo set plus one
  * decorative duplicate, moves left under normal motion, and settles into a
  * single static set for visitors who request reduced motion. */
@@ -427,6 +501,7 @@ async function main() {
   const noJsProblems = await collectLocaleProblems(checkNoJs);
   const navigationProblems = await collectLocaleProblems(checkNavigation);
   const heroProblems = await collectLocaleProblems(checkHeroLayering);
+  const handoffProblems = await collectLocaleProblems(checkSceneHandoff);
   const partnerProblems = await collectLocaleProblems(checkPartnerMarquee);
   const languageProblems = [];
   for (const locale of LOCALES) {
@@ -455,6 +530,9 @@ async function main() {
   console.log('\n=== Hero layering ===');
   console.log(heroProblems.length ? heroProblems.join('\n') : 'landing logo and differential image/text scroll pass');
 
+  console.log('\n=== Consulting -> HeatVision handoff ===');
+  console.log(handoffProblems.length ? handoffProblems.join('\n') : 'scene fully resolved where the HeatVision anchor parks, at every pinning height');
+
   console.log('\n=== Partner rail ===');
   console.log(partnerProblems.length ? partnerProblems.join('\n') : 'seven-logo continuous marquee and reduced-motion fallback pass');
 
@@ -467,6 +545,7 @@ async function main() {
     noJsProblems.length > 0 ||
     navigationProblems.length > 0 ||
     heroProblems.length > 0 ||
+    handoffProblems.length > 0 ||
     partnerProblems.length > 0 ||
     languageProblems.length > 0;
   process.exit(failed ? 1 : 0);

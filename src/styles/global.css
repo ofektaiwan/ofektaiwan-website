@@ -1844,18 +1844,37 @@
       }
 
       /* ---- Consulting -> HeatVision ----
-         This marker freezes at cover ~74% when the Expertise section reaches
-         its own pin, so every range here stays well inside that. The
-         percentages are the previous entry-range fractions rescaled: the old
-         subject was the HeatVision stripe (height --expertise-panel-h), the
-         new one is a viewport-length cover range. */
+         The ~92% parked lock described above does NOT apply to this seam, and
+         neither does the geometric reading of where it freezes. This is the
+         only marker that lives inside a sticky scene (.expertise-section), so
+         when that section pins, the seam freezes with it while scrolling
+         continues. A view timeline's cover range is the subject's travel
+         through the scrollport, so freezing the subject mid-travel STRETCHES
+         the range -- measured at 1512x900: 900px of travel becomes a 1324px
+         range.
+
+         That stretch is what makes the geometric position misleading. At the
+         pin the seam sits at (vh - top) / vh = ~74% of the viewport, but the
+         timeline reports only ~51%, because the remaining 49% is spread over
+         the pinned scroll where the seam no longer moves. Ranges ending above
+         that ~51% ceiling never complete at the parked position: the nav
+         anchor for #heatVision lands exactly at the pin, so a range ending at
+         53% left the stage at 95% -- clip-path: inset(0 0 0 4.6%), shearing
+         ~40px off the gallery's left edge.
+
+         Measured pin, in timeline %, across the scene-stack band:
+           1512x830 49.9 | 1512x900 51.0 | 1440x900 51.5
+           1280x860 52.0 | 1512x1000 53.1 | 1920x1080 54.0
+         Everything below therefore resolves by 44%, keeping ~5% clear of the
+         shortest viewport that still pins. scripts/visual-diff.mjs asserts the
+         parked state is fully resolved, because nothing static can catch this. */
       .consulting-stripe [data-transition-layer='media'] {
         animation-name: transition-consulting-media-recede;
         animation-duration: auto;
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: --seam-consulting-heatvision;
-        animation-range: cover 0% cover 56%;
+        animation-range: cover 0% cover 44%;
       }
 
       .consulting-stripe [data-transition-layer='copy'] {
@@ -1864,7 +1883,7 @@
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: --seam-consulting-heatvision;
-        animation-range: cover 0% cover 50%;
+        animation-range: cover 0% cover 40%;
       }
 
       .heatvision-stripe [data-transition-layer='copy'] {
@@ -1873,7 +1892,7 @@
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: --seam-consulting-heatvision;
-        animation-range: cover 6% cover 49%;
+        animation-range: cover 5% cover 39%;
       }
 
       .heatvision-stripe [data-transition-layer='stage'] {
@@ -1882,7 +1901,7 @@
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: --seam-consulting-heatvision;
-        animation-range: cover 0% cover 53%;
+        animation-range: cover 0% cover 42%;
       }
 
       .heatvision-transition-edge {
@@ -1891,7 +1910,7 @@
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: --seam-consulting-heatvision;
-        animation-range: cover 9% cover 43%;
+        animation-range: cover 7% cover 34%;
       }
 
       /* ---- HeatVision -> Partners ----
